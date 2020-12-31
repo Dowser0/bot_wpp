@@ -188,7 +188,8 @@ def request_counter(campeao):
 
 
 def request_pesquisa(pesquisa):
-    resultados = google.search(pesquisa+" youtube")
-    pesquisa = [resultados[0].link,resultados[0].name]
-    if pesquisa[0].startswith('https://www.youtube.com/'):
-        return pesquisa
+    resultados = google.search(pesquisa+ ' youtube')
+    for z in range(len(resultados)):
+        pesquisa = [resultados[z].link,resultados[z].name]
+        if pesquisa[0].startswith('https://www.youtube.com/'):
+            return pesquisa

@@ -94,15 +94,8 @@ import requests
 #z= request_counter('zed')
 #print(z)
 from googleapi import google
-
-def request_pesquisa(pesquisa):
-    resultados = google.search(pesquisa+' youtube ')
-    print(resultados)
-    pesquisa = [resultados[0].link,resultados[0].name]
-    if pesquisa[0].startswith('https://www.youtube.com/'):
-        return pesquisa
-
-z = request_pesquisa('gustavo hr')
+import requests
+z = requests.get('google.com')
 print(z)
 
 

@@ -97,12 +97,9 @@ while run:
             counters = _func_.request_counter(campeao)
             mensagem = '*Ban suggestions*\n'+counters[-1]+'\n'+counters[-2]+'\n'+counters[-3]+'\n*Counter picks*\n'+counters[-4]+'\n'+counters[-5]+'\n'+counters[-6]+'\n'
             _func_.enviar_mensagem(mensagem)
-
-        #if message.content.startswith('!'):
         
-
         if ultima_mensagem.lower().startswith('!help'):
-            mensagem = '!roll\n!md (link or name)\n!rune (name champ)\n!skill (name champ)\n!build (name champ)\n!champ (name champ)\n!counter (name champ)'
+            mensagem = '!roll\n!md (link or name)\n!rune (name champ)\n!skill (name champ)\n!build (name champ)\n!champ (name champ)\n!counter (name champ)\n @WppBot'
             _func_.enviar_mensagem(mensagem)
 
     except:
