@@ -93,19 +93,42 @@ import requests
 #    return counters
 #z= request_counter('zed')
 #print(z)
-from googleapi import google
-import requests
-z = requests.get('google.com')
-print(z)
+#from googleapi import google
+#def request_pesquisa(pesquisa):
+#    resultados = google.search(pesquisa+ ' youtube')
+#    for z in range(len(resultados)):
+#        pesquisa = [resultados[z].link,resultados[z].name]
+#        if pesquisa[0].startswith('https://www.youtube.com/'):
+#            return pesquisa
 
-
-
+#z =  request_pesquisa('sidoka')
+#print(z)
 #for resultado in search('"legends never die" youtube', stop=10):
 #  print(resultado)
+from pytube import YouTube,Playlist
+import os
 
+#def download_youtube(url):
+#    yt = YouTube(url)
+#    audio = yt.streams.filter(only_audio=True)[0]
+#    music = audio.download()
+#    os.rename(music,music[:-4]+'.mp3')
+#    return music[:-4]+'.mp3'
 
+#z =  download_youtube('https://www.youtube.com/watch?v=B6_iQvaIjXw&ab_channel=ArianaGrandeVevo')
 
+#print(z)
 
+def download_playlist_envia(url_):                                                  
+    playlist = Playlist(url_)
+    print(playlist)
+    for url in playlist:
+        yt = YouTube(url)
+        audio = yt.streams.filter(only_audio=True)[0]
+        music = audio.download()
+        os.rename(music,music[:-4]+'.mp3')
+        
+download_playlist_envia('https://youtube.com/playlist?list=PLEd-urvJlSm9PfBtTyK_IuslJstIBq7OF')
 
 
 
