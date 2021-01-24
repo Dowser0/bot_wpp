@@ -47,25 +47,18 @@ while run:
         if ultima_mensagem.lower().startswith('!md'):
             pesquisa = ultima_mensagem[3:]
             _func_.enviar_mensagem('Fazendo download de '+pesquisa)
-            nome_do_arquivo = _func_.download_youtube(pesquisa)
-            _func_.enviar_midia(nome_do_arquivo)
-            _func_.deleta_arquivo(nome_do_arquivo)
+            _func_.download_youtube(pesquisa)
 
         if ultima_mensagem.lower().startswith('!ms'):
             pesquisa = ultima_mensagem[3:]
             resultado = _func_.request_pesquisa(pesquisa)
             _func_.enviar_mensagem('Fazendo download de '+pesquisa)
-            nome_do_arquivo = _func_.download_youtube(resultado)
-            _func_.enviar_midia(nome_do_arquivo)
-            _func_.deleta_arquivo(nome_do_arquivo)
+            _func_.download_youtube(resultado)
 
         if ultima_mensagem.lower().startswith('!pd'):
             pesquisa = ultima_mensagem[3:]
             _func_.enviar_mensagem('Fazendo download de '+pesquisa)
             _func_.download_playlist_envia(pesquisa)
-        
-   
-          
 
 #        if ultima_mensagem.lower().startswith('!roll'):
 #            num_sorteado = random.randint(1,6)
@@ -114,7 +107,7 @@ while run:
     except:
         mensagem = 'Ocorreu um erro!'
         _func_.enviar_mensagem(mensagem)
-        with open('ERROS_log.txt','w') as arquivo:
+        with open('ERROS_log.txt','a') as arquivo:
             arquivo.write(str(_func_.ler_ultima_mensagem()+'\n'))
         pass
 

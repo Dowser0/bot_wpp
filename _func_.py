@@ -132,7 +132,12 @@ def download_youtube(url):
     audio = yt.streams.filter(only_audio=True)[0]
     music = audio.download()
     os.rename(music,music[:-4]+'.mp3')
-    return music[:-4]+'.mp3'
+    enviar_midia(music[:-4]+'.mp3')
+    with open('DOWNLOAD_log.txt','a') as arquivo:
+            arquivo.write(str(music[46:-4]+'.mp3'+'\n'))
+    deleta_arquivo(music[:-4]+'.mp3')
+    
+   
     
 
 def download_playlist_envia(url_):                                                  
@@ -143,6 +148,8 @@ def download_playlist_envia(url_):
         music = audio.download()
         os.rename(music,music[:-4]+'.mp3')
         enviar_midia(music[:-4]+'.mp3')
+        with open('DOWNLOAD_log.txt','a') as arquivo:
+            arquivo.write(str(music[46:-4]+'.mp3'+'\n'))
         deleta_arquivo(music[:-4]+'.mp3')
         time.sleep(1)
     
