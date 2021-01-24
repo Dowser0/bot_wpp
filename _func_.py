@@ -69,7 +69,7 @@ def DeletaArquivo(arquivo):
     os.remove(arquivo)
 
 def RequestPesquisa(pesquisa):
-    resultados = search(pesquisa+ 'youtube', num_results=10)
+    resultados = search(pesquisa+ 'youtube', num_results=100)
     for link in resultados:
         if link.startswith('https://www.youtube.com/'):
             return link

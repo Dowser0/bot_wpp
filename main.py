@@ -104,7 +104,7 @@ while run:
         mensagem = 'Ocorreu um erro!'
         _func_.EnviarMensagem(mensagem)
         with open('ERROS_log.txt','a') as arquivo:
-            arquivo.write(str(_func_.LerUltimaMensagem()+'\n'))
+            arquivo.write(str(ultima_mensagem+'\n'))
         pass
 
 
