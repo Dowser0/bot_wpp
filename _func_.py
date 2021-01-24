@@ -1,5 +1,5 @@
 import requests
-import dicionario_de_moedas
+#import dicionario_de_moedas
 #import matplotlib.pyplot as plt
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -14,7 +14,7 @@ from googlesearch import search
 
 imagem = "C:/Users/gabri/Documents/bot_wpp/figura.png"
 
-dicionario_moedas = dicionario_de_moedas.dicionario_moedas()
+#dicionario_moedas = dicionario_de_moedas.dicionario_moedas()
 
 motorista = webdriver.Chrome(ChromeDriverManager().install())
 
@@ -105,7 +105,6 @@ def EnviarMidia(midia):
 #        contador +=1
 
 #    return [lista_de_dias,lista_de_valores]
-
 
 #def separa_moeda_e_dias(nome_da_moeda_com_dias):
 #    lista_moeda_dias = nome_da_moeda_com_dias.split('-')
