@@ -11,58 +11,68 @@ import os
 from googlesearch import search
 #from bs4 import BeautifulSoup
 
-
 imagem = "C:/Users/gabri/Documents/bot_wpp/figura.png"
-
 #dicionario_moedas = dicionario_de_moedas.dicionario_moedas()
-
 motorista = webdriver.Chrome(ChromeDriverManager().install())
-
 motorista.get('https://web.whatsapp.com')
 
 def BuscarContato(contato):
-
     campo_pesquisa = motorista.find_elements_by_xpath('//div[contains(@class,"copyable-text selectable-text")]')
-
     campo_pesquisa[0].click()
-
     campo_pesquisa[0].send_keys(contato)
-
     campo_pesquisa[0].send_keys(Keys.ENTER)
 
 def LerUltimaMensagem():
-
     caixa_de_mensagem =  motorista.find_elements_by_xpath('//span[contains(@class,"selectable-text invisible-space copyable-text")]')
-
     ultima_mensagem = caixa_de_mensagem[-1].text
-
     return ultima_mensagem
 
 def EnviarMensagem(mensagem):
-
     mensagem = str(mensagem)
-
     campo_mensagem = motorista.find_elements_by_xpath('//div[contains(@class,"copyable-text selectable-text")]')
-
     campo_mensagem[1].click()
-
     campo_mensagem[1].send_keys(mensagem)
-
     campo_mensagem[1].send_keys(Keys.ENTER)
 
 def EnviarMidia(midia):
-
     motorista.find_element_by_xpath ('//*[@id="main"]/footer/div[1]/div[1]/div[2]/div/div/span').click()
-
     time.sleep(0.5)
-
     motorista.find_element_by_xpath("//input[@accept='image/*,video/mp4,video/3gpp,video/quicktime']").send_keys(midia)
-
     time.sleep(3)
-
     campo_de_envio = motorista.find_elements_by_xpath('//div[contains(@class,"q2PP6 _3Git-")]')
-
     campo_de_envio[0].click()
+
+def DownloadYoutube(url):
+    yt = YouTube(url)
+    audio = yt.streams.filter(only_audio=True)[0]
+    music = audio.download()
+    os.rename(music,music[:-4]+'.mp3')
+    EnviarMidia(music[:-4]+'.mp3')
+    with open('DOWNLOAD_log.txt','a') as arquivo:
+            arquivo.write(str(music[46:-4]+'.mp3'+'\n'))
+    DeletaArquivo(music[:-4]+'.mp3')
+
+def DownloadPlaylistEnvia(url_):                                                  
+    playlist = Playlist(url_)
+    for url in playlist:
+        yt = YouTube(url)
+        audio = yt.streams.filter(only_audio=True)[0]
+        music = audio.download()
+        os.rename(music,music[:-4]+'.mp3')
+        EnviarMidia(music[:-4]+'.mp3')
+        with open('DOWNLOAD_log.txt','a') as arquivo:
+            arquivo.write(str(music[46:-4]+'.mp3'+'\n'))
+        DeletaArquivo(music[:-4]+'.mp3')
+        time.sleep(1)
+    
+def DeletaArquivo(arquivo):
+    os.remove(arquivo)
+
+def RequestPesquisa(pesquisa):
+    resultados = search(pesquisa+ 'youtube', num_results=10)
+    for link in resultados:
+        if link.startswith('https://www.youtube.com/'):
+            return link
 
 #def _request_atual(nome_da_moeda):
     #Request money
@@ -125,35 +135,3 @@ def EnviarMidia(midia):
 
 #    plt.savefig('figura.png')
 #    return 'figura.png'
-
-def DownloadYoutube(url):
-    yt = YouTube(url)
-    audio = yt.streams.filter(only_audio=True)[0]
-    music = audio.download()
-    os.rename(music,music[:-4]+'.mp3')
-    EnviarMidia(music[:-4]+'.mp3')
-    with open('DOWNLOAD_log.txt','a') as arquivo:
-            arquivo.write(str(music[46:-4]+'.mp3'+'\n'))
-    DeletaArquivo(music[:-4]+'.mp3')
-
-def DownloadPlaylistEnvia(url_):                                                  
-    playlist = Playlist(url_)
-    for url in playlist:
-        yt = YouTube(url)
-        audio = yt.streams.filter(only_audio=True)[0]
-        music = audio.download()
-        os.rename(music,music[:-4]+'.mp3')
-        EnviarMidia(music[:-4]+'.mp3')
-        with open('DOWNLOAD_log.txt','a') as arquivo:
-            arquivo.write(str(music[46:-4]+'.mp3'+'\n'))
-        DeletaArquivo(music[:-4]+'.mp3')
-        time.sleep(1)
-    
-def DeletaArquivo(arquivo):
-    os.remove(arquivo)
-
-def RequestPesquisa(pesquisa):
-    resultados = search(pesquisa+ 'youtube', num_results=10)
-    for link in resultados:
-        if link.startswith('https://www.youtube.com/'):
-            return link

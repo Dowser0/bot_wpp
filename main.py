@@ -13,7 +13,6 @@ imagem = "C:/Users/gabri/Documents/bot_wpp/figura.png"
 #dicionario_moedas = dicionario_de_moedas.dicionario_moedas()
 run = True
 
-
 time.sleep(10)
 _func_.BuscarContato(contato)
 time.sleep(0.5)
@@ -45,20 +44,17 @@ while run:
 #            _func_.EnviarMidia(imagem)
 
         if ultima_mensagem.lower().startswith('!md'):
-            pesquisa = ultima_mensagem[3:]
-            _func_.EnviarMensagem('Fazendo download de '+pesquisa)
-            _func_.DownloadYoutube(pesquisa)
+            _func_.EnviarMensagem('Fazendo download de '+ultima_mensagem[3:])
+            _func_.DownloadYoutube(ultima_mensagem[3:])
 
         if ultima_mensagem.lower().startswith('!ms'):
-            pesquisa = ultima_mensagem[3:]
-            resultado = _func_.RequestPesquisa(pesquisa)
-            _func_.EnviarMensagem('Fazendo download de '+pesquisa)
+            resultado = _func_.RequestPesquisa(ultima_mensagem[3:])
+            _func_.EnviarMensagem('Fazendo download de '+ultima_mensagem[3:])
             _func_.DownloadYoutube(resultado)
 
         if ultima_mensagem.lower().startswith('!pd'):
-            pesquisa = ultima_mensagem[3:]
-            _func_.EnviarMensagem('Fazendo download de '+pesquisa)
-            _func_.DownloadPlaylistEnvia(pesquisa)
+            _func_.EnviarMensagem('Fazendo download de '+ultima_mensagem[3:])
+            _func_.DownloadPlaylistEnvia(ultima_mensagem[3:])
 
 #        if ultima_mensagem.lower().startswith('!roll'):
 #            num_sorteado = random.randint(1,6)
