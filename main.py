@@ -15,20 +15,20 @@ run = True
 
 
 time.sleep(10)
-_func_.buscar_contato(contato)
+_func_.BuscarContato(contato)
 time.sleep(0.5)
 
 while run:
     try:
 
-        ultima_mensagem = str(_func_.ler_ultima_mensagem())
+        ultima_mensagem = str(_func_.LerUltimaMensagem())
 
 #        if ultima_mensagem.lower().startswith('!money'):
 #            nome_da_moeda = ultima_mensagem[6:]
 #            valor_atual = _func_.request_valor_atual(nome_da_moeda)
 #            valor_atual[0] = str(round(valor_atual[0], 2))
 #            mensagem = valor_atual[1]+':R$'+valor_atual[0]
-#            _func_.enviar_mensagem(mensagem)
+#            _func_.EnviarMensagem(mensagem)
 
 #        if ultima_mensagem.lower().startswith('!mhistoric'):
 #            nome_da_moeda = ultima_mensagem[10:]
@@ -41,74 +41,74 @@ while run:
 #            lista_de_valores = lista_historico_de_valores_e_dias[1]
 #            _func_.gera_grafico(nome_da_moeda,lista_de_dias,lista_de_valores)
 #            mensagem =  'seu gráfico :)'
-#            _func_.enviar_mensagem(mensagem)
-#            _func_.enviar_midia(imagem)
+#            _func_.EnviarMensagem(mensagem)
+#            _func_.EnviarMidia(imagem)
 
         if ultima_mensagem.lower().startswith('!md'):
             pesquisa = ultima_mensagem[3:]
-            _func_.enviar_mensagem('Fazendo download de '+pesquisa)
-            _func_.download_youtube(pesquisa)
+            _func_.EnviarMensagem('Fazendo download de '+pesquisa)
+            _func_.DownloadYoutube(pesquisa)
 
         if ultima_mensagem.lower().startswith('!ms'):
             pesquisa = ultima_mensagem[3:]
-            resultado = _func_.request_pesquisa(pesquisa)
-            _func_.enviar_mensagem('Fazendo download de '+pesquisa)
-            _func_.download_youtube(resultado)
+            resultado = _func_.RequestPesquisa(pesquisa)
+            _func_.EnviarMensagem('Fazendo download de '+pesquisa)
+            _func_.DownloadYoutube(resultado)
 
         if ultima_mensagem.lower().startswith('!pd'):
             pesquisa = ultima_mensagem[3:]
-            _func_.enviar_mensagem('Fazendo download de '+pesquisa)
-            _func_.download_playlist_envia(pesquisa)
+            _func_.EnviarMensagem('Fazendo download de '+pesquisa)
+            _func_.DownloadPlaylistEnvia(pesquisa)
 
 #        if ultima_mensagem.lower().startswith('!roll'):
 #            num_sorteado = random.randint(1,6)
 #            mensagem = num_sorteado
-#            _func_.enviar_mensagem(mensagem)
+#            _func_.EnviarMensagem(mensagem)
 
 #        if ultima_mensagem.lower().startswith('!rune'):
 #            campeao = ultima_mensagem[5:]
 #            runas = _func_.request_runas(campeao)
 #            mensagem = '*'+runas[0]+'*\n'+runas[1]+'\n'+runas[2]+'\n'+runas[3]+'\n'+runas[4]+'\n*'+runas[5]+'*\n'+runas[6]+'\n'+runas[7]+'\n*'+runas[8]+'*\n*'+runas[9]+'*\n*'+runas[10]+'*\n'
-#            _func_.enviar_mensagem(mensagem)
+#            _func_.EnviarMensagem(mensagem)
 
 #        if ultima_mensagem.lower().startswith('!skill'):
 #            campeao = ultima_mensagem[6:]
 #            habilidade = _func_.request_habilidades(campeao)
 #            mensagem = '*'+habilidade[0]+'* > *'+habilidade[1]+'* > *'+habilidade[2]+'*'
-#            _func_.enviar_mensagem(mensagem)
+#            _func_.EnviarMensagem(mensagem)
         
 #        if ultima_mensagem.lower().startswith('!build'):
 #            campeao = ultima_mensagem[6:]
 #            build = _func_.request_build(campeao)
 #            mensagem = build[0]+'\n'+build[1]+'\n'+build[2]+'\n'+build[3]+'\n'+build[4]+'\n'+build[5]
-#            _func_.enviar_mensagem(mensagem)
+#            _func_.EnviarMensagem(mensagem)
 
 #        if ultima_mensagem.lower().startswith('!champ'):
 #            campeao = ultima_mensagem[6:]
 #            mensagem = '*'+runas[0]+'*\n'+runas[1]+'\n'+runas[2]+'\n'+runas[3]+'\n'+runas[4]+'\n*'+runas[5]+'*\n'+runas[6]+'\n'+runas[7]+'\n*'+runas[8]+'*\n*'+runas[9]+'*\n*'+runas[10]+'*\n'
-#            _func_.enviar_mensagem(mensagem)
+#            _func_.EnviarMensagem(mensagem)
 #            habilidade = _func_.request_habilidades(campeao)
 #            mensagem = '*'+habilidade[0]+'* > *'+habilidade[1]+'* > *'+habilidade[2]+'*'
-#            _func_.enviar_mensagem(mensagem)
+#            _func_.EnviarMensagem(mensagem)
 #            build = _func_.request_build(campeao)
 #            mensagem = build[0]+'\n'+build[1]+'\n'+build[2]+'\n'+build[3]+'\n'+build[4]+'\n'+build[5]
-#            _func_.enviar_mensagem(mensagem)
+#            _func_.EnviarMensagem(mensagem)
 
 #        if ultima_mensagem.lower().startswith('!counter'):
 #            campeao = ultima_mensagem[8:]
 #            counters = _func_.request_counter(campeao)
 #            mensagem = '*Ban suggestions*\n'+counters[-1]+'\n'+counters[-2]+'\n'+counters[-3]+'\n*Counter picks*\n'+counters[-4]+'\n'+counters[-5]+'\n'+counters[-6]+'\n'
-#            _func_.enviar_mensagem(mensagem)
+#            _func_.EnviarMensagem(mensagem)
         
         if ultima_mensagem.lower().startswith('!help'):
             mensagem = '!md (link)\n!ms (name)\n!pd (link)\n Discord > Dowser#5924'
-            _func_.enviar_mensagem(mensagem)
+            _func_.EnviarMensagem(mensagem)
 
     except:
         mensagem = 'Ocorreu um erro!'
-        _func_.enviar_mensagem(mensagem)
+        _func_.EnviarMensagem(mensagem)
         with open('ERROS_log.txt','a') as arquivo:
-            arquivo.write(str(_func_.ler_ultima_mensagem()+'\n'))
+            arquivo.write(str(_func_.LerUltimaMensagem()+'\n'))
         pass
 
 

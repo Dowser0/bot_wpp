@@ -20,7 +20,7 @@ motorista = webdriver.Chrome(ChromeDriverManager().install())
 
 motorista.get('https://web.whatsapp.com')
 
-def buscar_contato(contato):
+def BuscarContato(contato):
 
     campo_pesquisa = motorista.find_elements_by_xpath('//div[contains(@class,"copyable-text selectable-text")]')
 
@@ -30,7 +30,7 @@ def buscar_contato(contato):
 
     campo_pesquisa[0].send_keys(Keys.ENTER)
 
-def ler_ultima_mensagem():
+def LerUltimaMensagem():
 
     caixa_de_mensagem =  motorista.find_elements_by_xpath('//span[contains(@class,"selectable-text invisible-space copyable-text")]')
 
@@ -38,7 +38,7 @@ def ler_ultima_mensagem():
 
     return ultima_mensagem
 
-def enviar_mensagem(mensagem):
+def EnviarMensagem(mensagem):
 
     mensagem = str(mensagem)
 
@@ -50,7 +50,7 @@ def enviar_mensagem(mensagem):
 
     campo_mensagem[1].send_keys(Keys.ENTER)
 
-def enviar_midia(midia):
+def EnviarMidia(midia):
 
     motorista.find_element_by_xpath ('//*[@id="main"]/footer/div[1]/div[1]/div[2]/div/div/span').click()
 
@@ -127,36 +127,33 @@ def enviar_midia(midia):
 #    plt.savefig('figura.png')
 #    return 'figura.png'
 
-def download_youtube(url):
+def DownloadYoutube(url):
     yt = YouTube(url)
     audio = yt.streams.filter(only_audio=True)[0]
     music = audio.download()
     os.rename(music,music[:-4]+'.mp3')
-    enviar_midia(music[:-4]+'.mp3')
+    EnviarMidia(music[:-4]+'.mp3')
     with open('DOWNLOAD_log.txt','a') as arquivo:
             arquivo.write(str(music[46:-4]+'.mp3'+'\n'))
-    deleta_arquivo(music[:-4]+'.mp3')
-    
-   
-    
+    DeletaArquivo(music[:-4]+'.mp3')
 
-def download_playlist_envia(url_):                                                  
+def DownloadPlaylistEnvia(url_):                                                  
     playlist = Playlist(url_)
     for url in playlist:
         yt = YouTube(url)
         audio = yt.streams.filter(only_audio=True)[0]
         music = audio.download()
         os.rename(music,music[:-4]+'.mp3')
-        enviar_midia(music[:-4]+'.mp3')
+        EnviarMidia(music[:-4]+'.mp3')
         with open('DOWNLOAD_log.txt','a') as arquivo:
             arquivo.write(str(music[46:-4]+'.mp3'+'\n'))
-        deleta_arquivo(music[:-4]+'.mp3')
+        DeletaArquivo(music[:-4]+'.mp3')
         time.sleep(1)
     
-def deleta_arquivo(arquivo):
+def DeletaArquivo(arquivo):
     os.remove(arquivo)
 
-def request_pesquisa(pesquisa):
+def RequestPesquisa(pesquisa):
     resultados = search(pesquisa+ 'youtube', num_results=10)
     for link in resultados:
         if link.startswith('https://www.youtube.com/'):
