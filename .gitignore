@@ -1,1 +1,12 @@
 lib
+.env
+__pycache__
+Scripts
+selenium
+.google-cookie
+debug.log
+dicionario_de_moedas.py
+figura.png
+proxy.py
+pyvenv.cfg
+teste.py
