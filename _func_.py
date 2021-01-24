@@ -1,14 +1,15 @@
 import requests
 import dicionario_de_moedas
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 from selenium.webdriver.common.keys import Keys
 from pytube import YouTube,Playlist
 import os
-from googleapi import google
-from bs4 import BeautifulSoup
+#from googleapi import google
+from googlesearch import search
+#from bs4 import BeautifulSoup
 
 
 imagem = "C:/Users/gabri/Documents/bot_wpp/figura.png"
@@ -132,6 +133,7 @@ def download_youtube(url):
     music = audio.download()
     os.rename(music,music[:-4]+'.mp3')
     return music[:-4]+'.mp3'
+    
 
 def download_playlist_envia(url_):                                                  
     playlist = Playlist(url_)
@@ -147,48 +149,8 @@ def download_playlist_envia(url_):
 def deleta_arquivo(arquivo):
     os.remove(arquivo)
 
-#def request_runas(campeao):
-#    html = requests.get("https://rankedboost.com/league-of-legends/build/"+campeao+"/").content
-#    soup = BeautifulSoup(html, 'html.parser')
-#    elemento1 = soup.find_all("div", class_="rb-build-rune-text")
-#    lista_de_runas = []
-#    for z in range(len(elemento1)):
-#        lista_de_runas.append(elemento1[z].string)
-
-#    return lista_de_runas
-
-#def request_habilidades(campeao):
-#    html = requests.get("https://rankedboost.com/league-of-legends/build/"+campeao+"/").content
-#    soup = BeautifulSoup(html, 'html.parser')
-#    elemento1 = soup.find_all("div", class_="rb-build-ability-key")
-#    ordem_das_habilidades = []
-#    for z in range(len(elemento1)):
-#        ordem_das_habilidades.append(elemento1[z].string)
-#    return ordem_das_habilidades
-
-#def request_build(campeao):
-#    html = requests.get("https://rankedboost.com/league-of-legends/build/"+campeao+"/").content
-#    soup = BeautifulSoup(html, 'html.parser')
-#    elemento1 = soup.find_all("span", class_="rb-item-img-text obt-css")
-#    build = []
-#    for z in range(len(elemento1)):
-#        build.append(elemento1[z].string)
-#    return build
-
-#def request_counter(campeao):
-#    html = requests.get("https://rankedboost.com/league-of-legends/build/"+campeao+"/").content
-#    soup = BeautifulSoup(html, 'html.parser')
-#    elemento1 = soup.find_all("span", class_="counters-sidebar-champ-name")
-#    counters = []
-#    for z in range(len(elemento1)):
-#        counters.append(elemento1[z].string)
-#    return counters
-
-
-
 def request_pesquisa(pesquisa):
-    resultados = google.search(pesquisa+ ' youtube')
-    for z in range(len(resultados)):
-        pesquisa = [resultados[z].link,resultados[z].name]
-        if pesquisa[0].startswith('https://www.youtube.com/'):
-            return pesquisa
+    resultados = search(pesquisa+ 'youtube', num_results=10)
+    for link in resultados:
+        if link.startswith('https://www.youtube.com/'):
+            return link

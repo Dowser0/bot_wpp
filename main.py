@@ -7,7 +7,7 @@ import _func_
 #import random
 
 
-contato = ["Dowser musicas"]
+contato = ["Dowser Musicas"]
 mensagem = 'top'
 imagem = "C:/Users/gabri/Documents/bot_wpp/figura.png"
 #dicionario_moedas = dicionario_de_moedas.dicionario_moedas()
@@ -46,17 +46,18 @@ while run:
 
         if ultima_mensagem.lower().startswith('!md'):
             pesquisa = ultima_mensagem[3:]
-            if pesquisa.lower().startswith('https://www.youtube.com/'):
-                _func_.enviar_mensagem('Fazendo download de '+pesquisa)
-                nome_do_arquivo = _func_.download_youtube(pesquisa)
-                _func_.enviar_midia(nome_do_arquivo)
-                _func_.deleta_arquivo(nome_do_arquivo)
-            else : 
-                resultados = _func_.request_pesquisa(pesquisa)
-                _func_.enviar_mensagem('Fazendo download de '+resultados[1][0:-33])
-                nome_do_arquivo = _func_.download_youtube(resultados[0])
-                _func_.enviar_midia(nome_do_arquivo)
-                _func_.deleta_arquivo(nome_do_arquivo)
+            _func_.enviar_mensagem('Fazendo download de '+pesquisa)
+            nome_do_arquivo = _func_.download_youtube(pesquisa)
+            _func_.enviar_midia(nome_do_arquivo)
+            _func_.deleta_arquivo(nome_do_arquivo)
+
+        if ultima_mensagem.lower().startswith('!ms'):
+            pesquisa = ultima_mensagem[3:]
+            resultado = _func_.request_pesquisa(pesquisa)
+            _func_.enviar_mensagem('Fazendo download de '+pesquisa)
+            nome_do_arquivo = _func_.download_youtube(resultado)
+            _func_.enviar_midia(nome_do_arquivo)
+            _func_.deleta_arquivo(nome_do_arquivo)
 
         if ultima_mensagem.lower().startswith('!pd'):
             pesquisa = ultima_mensagem[3:]
@@ -107,13 +108,16 @@ while run:
 #            _func_.enviar_mensagem(mensagem)
         
         if ultima_mensagem.lower().startswith('!help'):
-            mensagem = '!md (link or name)\n!pd (link)\n Twitter > @WppBot'
+            mensagem = '!md (link)\n!ms (name)\n!pd (link)\n Discord > Dowser#5924'
             _func_.enviar_mensagem(mensagem)
 
     except:
         mensagem = 'Ocorreu um erro!'
         _func_.enviar_mensagem(mensagem)
+        with open('ERROS_log.txt','w') as arquivo:
+            arquivo.write(str(_func_.ler_ultima_mensagem()+'\n'))
         pass
+
 
 
 
