@@ -7,7 +7,7 @@ import _func_
 #import random
 
 
-contato = ["Dowser Musicas"]
+contato = ["Rapport"]
 mensagem = 'top'
 imagem = "C:/Users/gabri/Documents/bot_wpp/figura.png"
 #dicionario_moedas = dicionario_de_moedas.dicionario_moedas()

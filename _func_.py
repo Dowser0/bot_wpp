@@ -23,7 +23,7 @@ def BuscarContato(contato):
     campo_pesquisa[0].send_keys(Keys.ENTER)
 
 def LerUltimaMensagem():
-    caixa_de_mensagem =  motorista.find_elements_by_xpath('//span[contains(@class,"selectable-text invisible-space copyable-text")]')
+    caixa_de_mensagem =  motorista.find_elements_by_xpath('//span[contains(@class,"_3-8er selectable-text copyable-text")]')
     ultima_mensagem = caixa_de_mensagem[-1].text
     return ultima_mensagem
 
